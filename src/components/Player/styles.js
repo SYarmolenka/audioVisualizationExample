@@ -1,22 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-`;
-
-export const CanvasWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: calc(100 * var(--vh) - 100px);
-  @media (orientation: portrait), (max-width: 801px) {
-    height: calc(100 * var(--vh) - 220px);
-  }
-`;
-
-export const PlayerWrap = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   justify-content: space-between;
@@ -26,7 +10,7 @@ export const PlayerWrap = styled.div`
   width: 100%;
   height: 100px;
   padding: 0 25px;
-  @media (orientation: portrait), (max-width: 801px) {
+  @media (orientation: portrait), (max-width: 799px) {
     grid-template-columns: 1fr;
     height: 220px;
   }
