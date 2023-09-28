@@ -1,0 +1,46 @@
+{
+  "name": "audio_visual",
+  "version": "0.0.1",
+  "description": "audioVisual",
+  "author": "Sergey Ermolenko",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.22.15",
+    "eslint": "^8.50.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^14.0.1",
+    "prettier": "^3.0.3"
+  },
+  "dependencies": {
+    "framer-motion": "^10.16.4",
+    "prop-types": "^15.8.1",
+    "ramda": "^0.29.0",
+    "react": "^18.2.0",
+    "react-app-polyfill": "^3.0.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.1.2",
+    "react-router-dom": "^6.16.0",
+    "react-scripts": "^5.0.1",
+    "redux": "^4.2.1",
+    "redux-actions": "^3.0.0",
+    "redux-saga": "^1.2.3",
+    "styled-components": "^6.0.8"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "packageManager": "yarn@3.5.1"
+}
