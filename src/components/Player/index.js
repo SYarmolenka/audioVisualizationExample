@@ -10,7 +10,7 @@ const Player = forwardRef(({ onPlay, onPause, onEnded }, ref) => {
   const [fileName, setFileName] = useState('');
 
   const onChange = useCallback(({ currentTarget }) => {
-    const file = currentTarget.files[0];
+    const [file] = currentTarget.files;
     const { name = '', size = 0, type = '' } = file || {};
 
     if (type && type.includes('audio/') && size > 0) {

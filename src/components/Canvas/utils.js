@@ -11,13 +11,13 @@ export const renderMap = {
     dataArray.forEach((val, i) => {
       const barHeight = (height / 255) * val;
 
-      ctx.fillStyle = `rgb(${(i * barHeight) / 10}, ${i * 4}, ${barHeight / 4 - 12})`;
+      ctx.fillStyle = `hsl(${255 - val}, 100%, 50%)`;
       ctx.fillRect(barWidth * i + gap * i, height - barHeight, barWidth, barHeight);
     });
   },
   [BAR_2]: (ctx, { width, height, dataArray }) => {
     const { length } = dataArray;
-    const gap = width / 50;
+    const gap = width / 200;
     const barWidth = (width - gap * length + gap) / length;
 
     ctx.clearRect(0, 0, width, height);
@@ -31,7 +31,7 @@ export const renderMap = {
   },
   [VOLUME_1]: (ctx, { width, height, dataArray }) => {
     const { length } = dataArray;
-    const x = width / length + 1;
+    const x = width / length;
 
     ctx.clearRect(0, 0, width, height);
     ctx.beginPath();
@@ -40,7 +40,7 @@ export const renderMap = {
     dataArray.forEach((val, i) => {
       const barHeight = (height / 255) * val;
 
-      i === 0 ? ctx.moveTo(x * i + 1, height - barHeight) : ctx.lineTo(x * i + 1, height - barHeight);
+      i === 0 ? ctx.moveTo(0, height - barHeight) : ctx.lineTo(x * i, height - barHeight);
     });
 
     ctx.lineTo(width, height);
@@ -50,16 +50,17 @@ export const renderMap = {
   },
   [LINE_1]: (ctx, { width, height, dataArray }) => {
     const { length } = dataArray;
-    const x = width / length + 1;
+    const x = width / length;
 
     ctx.clearRect(0, 0, width, height);
     ctx.beginPath();
     ctx.strokeStyle = '#00f';
+    ctx.lineWidth = 2;
 
     dataArray.forEach((val, i) => {
       const barHeight = (height / 255) * val;
 
-      i === 0 ? ctx.moveTo(x * i + 1, height - barHeight) : ctx.lineTo(x * i + 1, height - barHeight);
+      i === 0 ? ctx.moveTo(0, height - barHeight) : ctx.lineTo(x * i, height - barHeight);
     });
 
     ctx.stroke();

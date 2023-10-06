@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 
 import { INIT_DATA, OPTIONS, BAR_1 } from './consts';
 import { renderMap } from './utils';
-import { Container, Cnv, Select } from './styles';
+import { Container, Cnv, Select, Input } from './styles';
 
-const Canvas = ({ state, getByteFrequencyData, getByteTimeDomainData }) => {
+const Canvas = ({ state, analyser, getByteFrequencyData }) => {
   const containerRef = useRef(null);
   const canvasRef = useRef(null);
   const frameRef = useRef(null);
@@ -38,6 +38,12 @@ const Canvas = ({ state, getByteFrequencyData, getByteTimeDomainData }) => {
   }, []);
 
   const onSelect = useCallback(({ currentTarget }) => setType(currentTarget.value), []);
+  const onChange = useCallback(
+    ({ currentTarget }) => {
+      if (analyser) analyser.smoothingTimeConstant = currentTarget.value; // eslint-disable-line no-param-reassign
+    },
+    [analyser]
+  );
 
   const clearCanvas = useCallback(() => {
     if (ctx) {
@@ -86,24 +92,38 @@ const Canvas = ({ state, getByteFrequencyData, getByteTimeDomainData }) => {
   return (
     <Container ref={containerRef}>
       <Cnv ref={canvasRef} width="0" height="0" />
-      <Select value={type} onChange={onSelect}>
+      <Select value={type} onChange={onSelect} title="Type">
         {OPTIONS.map(({ id, name }) => (
           <option key={id} value={id} label={name}>
             {name}
           </option>
         ))}
       </Select>
+      {analyser && (
+        <Input
+          type="range"
+          defaultValue={analyser.smoothingTimeConstant}
+          onChange={onChange}
+          min="0"
+          max="0.99"
+          step="0.01"
+          title="Smoothing Time"
+        />
+      )}
     </Container>
   );
 };
 
+Canvas.defaultProps = { analyser: null };
 Canvas.propTypes = {
   state: PropTypes.shape({
     playing: PropTypes.bool.isRequired,
     stopped: PropTypes.bool.isRequired,
   }).isRequired,
+  analyser: PropTypes.shape({
+    smoothingTimeConstant: PropTypes.number.isRequired,
+  }),
   getByteFrequencyData: PropTypes.func.isRequired,
-  getByteTimeDomainData: PropTypes.func.isRequired,
 };
 
 export default Canvas;

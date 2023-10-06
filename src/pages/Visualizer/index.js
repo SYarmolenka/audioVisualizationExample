@@ -9,7 +9,7 @@ import { Container } from './styles';
 const Visualizer = () => {
   const audioRef = useRef();
   const [state, setState] = useState({ playing: false, stopped: true });
-  const { onPlay, onPause, getByteFrequencyData, getByteTimeDomainData } = useAudioContext(audioRef);
+  const { analyser, onPlay, onPause, getByteFrequencyData } = useAudioContext(audioRef);
 
   const handlePlay = useCallback(() => {
     onPlay();
@@ -26,7 +26,7 @@ const Visualizer = () => {
 
   return (
     <Container>
-      <Canvas state={state} getByteFrequencyData={getByteFrequencyData} getByteTimeDomainData={getByteTimeDomainData} />
+      <Canvas state={state} analyser={analyser} getByteFrequencyData={getByteFrequencyData} />
       <Player ref={audioRef} onPlay={handlePlay} onPause={handlePause} onEnded={handleEnded} />
     </Container>
   );

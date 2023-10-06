@@ -14,7 +14,7 @@ export const useAudioContext = (audioRef) => {
 
     audioSource.connect(analyser);
     analyser.connect(context.destination);
-    analyser.fftSize = 128;
+    analyser.fftSize = 512;
 
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
@@ -27,11 +27,6 @@ export const useAudioContext = (audioRef) => {
 
     return audioData.dataArray;
   }, [audioData]);
-  const getByteTimeDomainData = useCallback(() => {
-    if (audioData.analyser) audioData.analyser.getByteTimeDomainData(audioData.dataArray);
-
-    return audioData.dataArray;
-  }, [audioData]);
 
   const onPlay = useCallback(() => {
     if (!audioData.audioSource) createContext();
@@ -41,5 +36,5 @@ export const useAudioContext = (audioRef) => {
     if (audioData.context?.state === 'running') audioData.context.suspend();
   }, [audioData]);
 
-  return { onPlay, onPause, getByteFrequencyData, getByteTimeDomainData };
+  return { analyser: audioData?.analyser, onPlay, onPause, getByteFrequencyData };
 };

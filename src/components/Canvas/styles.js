@@ -22,10 +22,36 @@ export const Select = styled.select`
   border-radius: 10px;
   font-family: sans-serif;
   font-size: 20px;
-  color: #000;
+  color: var(--color-black);
   padding: 0 20px;
   background: rgba(255, 255, 255, 0.5);
   cursor: pointer;
   z-index: 1;
   margin: 10px 25px;
+`;
+
+const trackStyle = `
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  background: var(--color-black);
+  border-radius: 1px;
+`;
+
+export const Input = styled.input`
+  width: 280px;
+  z-index: 1;
+  margin: 10px 25px;
+  &::-webkit-slider-runnable-track {
+    ${trackStyle}
+  }
+  &::-webkit-slider-thumb {
+    transform: translateY(-7px);
+  }
+  &::-moz-range-track {
+    ${trackStyle}
+  }
+  &::-ms-track {
+    ${trackStyle}
+  }
 `;
